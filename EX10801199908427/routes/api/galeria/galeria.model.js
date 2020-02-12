@@ -5,6 +5,20 @@ var galleryModel = {};
 
 var galleryCollection = [];
 
+function writeToFlie(){
+  var serializedJSON = JSON.stringify(galleryCollection);
+  fs.writeFileSync(fileToSave, serializedJSON, { encoding: 'utf8' } );
+  return true;
+}
+function openFile(){
+  try{
+  var serializedJSON = fs.readFileSync(fileToSave,{encoding:'utf8'});
+  galleryCollection = JSON.parse(serializedJSON);
+  } catch(e){
+    console.log(e);
+  }
+}
+
 var galleryTemplate = {
   picID: "",
   pictitle:"",
@@ -13,6 +27,8 @@ var galleryTemplate = {
   picAlbum:"",
   picDateCreated: null
 }
+
+openFile();
 
 galleryModel.getAll = ()=>{
   return galleryCollection;
@@ -31,10 +47,71 @@ galleryModel.getById = (id)=>{
   }
 }
 
+galleryModel.addNew = ({ title, url, thmb, album }  )=>{
+  var newPhoto = Object.assign(
+    {},
+    galleryTemplate,
+    {
+      pictitle: title,
+      picurl:url,
+      picThmb:thmb,
+      picAlbum:album,
+      picDateCreated: new Date().getTime()
+    }
+  );
+  newPhoto.picID = galleryCollection.length + 1;
+
+  galleryCollection.push(newPhoto);
+  writeToFlie();
+  return newPhoto;
+}
 
 
+galleryModel.update = (id, {title, url, thmb, album })=>{
+ var updatingPhoto = galleryCollection.filter(
+   (o, i)=>{
+     return o.picID === id;
+   }
+ );
+ if(updatingPhoto && updatingPhoto.length>0){
+   updatingPhoto = updatingPhoto[0];
+ } else {
+   return null;
+ }
+ var updatePhoto = {};
+ var newUpdatedCollection = galleryCollection.map(
+   (o, i)=>{
+     if(o.picID === id){
+       updatePhoto = Object.assign({},
+          o,
+         { pictitle: title, picurl:url, picThmb:thmb, picAlbum:album}
+       );
+       return updatePhoto;
+     }else{
+       return o;
+     }
+   }
+ );
 
-galleryCollection.push(
+  galleryCollection = newUpdatedCollection;
+  writeToFlie();
+  return updatePhoto;
+}
+
+galleryModel.deletebycode = (id)=>{
+  var newCollection=[];
+  newCollection = galleryCollection.filter(
+    (o)=>{
+      return o.picID !== id;
+    }
+  );
+  galleryCollection = newCollection;
+  writeToFlie();
+  return true;
+}
+
+
+/*galleryCollection.push(
   Object.assign(
     {},
     galleryTemplate,
@@ -47,7 +124,7 @@ galleryCollection.push(
       picDateCreated: new Date().getTime()
     }
   )
-);
+);*/
 
 
 
