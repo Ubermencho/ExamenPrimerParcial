@@ -24,8 +24,7 @@ var galleryTemplate = {
   pictitle:"",
   picurl:"",
   picThmb:"",
-  picAlbum:"",
-  picDateCreated: null
+  picAlbum:""
 }
 
 openFile();
@@ -55,8 +54,7 @@ galleryModel.addNew = ({ title, url, thmb, album }  )=>{
       pictitle: title,
       picurl:url,
       picThmb:thmb,
-      picAlbum:album,
-      picDateCreated: new Date().getTime()
+      picAlbum:album
     }
   );
   newPhoto.picID = galleryCollection.length + 1;
@@ -67,7 +65,7 @@ galleryModel.addNew = ({ title, url, thmb, album }  )=>{
 }
 
 
-galleryModel.update = (id, {title, url, thmb, album })=>{
+galleryModel.update = (id, {url, thmb})=>{
  var updatingPhoto = galleryCollection.filter(
    (o, i)=>{
      return o.picID === id;
@@ -84,7 +82,7 @@ galleryModel.update = (id, {title, url, thmb, album })=>{
      if(o.picID === id){
        updatePhoto = Object.assign({},
           o,
-         { pictitle: title, picurl:url, picThmb:thmb, picAlbum:album}
+         { picurl:url, picThmb:thmb}
        );
        return updatePhoto;
      }else{

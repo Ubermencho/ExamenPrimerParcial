@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "c6f45cf7-f67f-4c90-bf84-cfca7397533f",
+		"name": "ExamenParcialSS202001",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/galeria/fotos/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/galeria/fotos/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"galeria",
+								"fotos",
+								"all"
+							]
+						},
+						"description": "Consultar todas las fotos"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/galeria/fotos/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/galeria/fotos/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"galeria",
+								"fotos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "buscar foto por id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/galeria/fotos/new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "nombrefoto",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "https://unsplash.com/photos/R4k4p5H0UDM",
+									"type": "text"
+								},
+								{
+									"key": "thmb",
+									"value": "https://unsplash.com/photos/R4k4p5H0UDM",
+									"type": "text"
+								},
+								{
+									"key": "album",
+									"value": "Nature",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/galeria/fotos/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"galeria",
+								"fotos",
+								"new"
+							]
+						},
+						"description": "agregar una foto"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/galeria/fotos/upd/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "url",
+									"value": "https://unsplash.com/photos/R4k4p5H0UDMUPD",
+									"type": "text"
+								},
+								{
+									"key": "thmb",
+									"value": "https://unsplash.com/photos/R4k4p5H0UDM",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/galeria/fotos/upd/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"galeria",
+								"fotos",
+								"upd",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "actualizacion de una foto"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/galeria/fotos/del/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/galeria/fotos/del/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"galeria",
+								"fotos",
+								"del",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
